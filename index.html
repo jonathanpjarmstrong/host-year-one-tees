@@ -135,7 +135,7 @@
   <header>
     <div class="eyebrow">Yelp Host · Anniversary merch</div>
     <h1>Year One Tees</h1>
-    <p class="lede">On-trend directions on a <strong>black boxy, oversized tee</strong>. Each follows the current streetwear format: a small chest hit up front and the big statement on the back. Inks stay red and white (plus one tonal and one chrome option). Launch year is set to 2026.</p>
+    <p class="lede">On-trend directions on a <strong>black boxy, oversized tee</strong>. Each follows the current streetwear format: a small chest hit up front and the big statement on the back. Inks stay red and white (plus one tonal and one chrome option). Launch year is set to 2026. Direction I is embroidered, shown on black and on white.</p>
   </header>
   <main id="board"></main>
   <footer>Sketches only: type and scale are approximate. Pick one or two and I'll tighten the type, drop in real milestones, and spec the prints for a vendor (puff, foil and crackle all need to be called out on the order).</footer>
@@ -208,20 +208,43 @@ const NECK_FRONT = 'C230 52 170 52 158 24';
 const NECK_BACK = 'C228 36 172 36 158 24';
 const bodyPath = neck => `M158 24 L66 42 Q40 54 30 90 L16 156 L82 170 L86 132 L86 414 Q200 420 314 414 L314 132 L318 170 L384 156 L370 90 Q360 54 334 42 L242 24 ${neck} Z`;
 
-function tee(side, print, id, label) {
+const SHIRTS = {
+  black: { body: TEE, inside: '#070707', collar: '#2a2a2a', seam: '#202020', sheen: '#fff', op: [0, .05], outline: 'none' },
+  white: { body: '#f7f6f2', inside: '#dedbd4', collar: '#e8e5df', seam: '#e2dfd8', sheen: '#000', op: [.05, 0], outline: '#c4c1ba' }
+};
+
+// Embroidery: satin-stitch hatching plus a slight lift shadow.
+function stitch(id, base, hi) {
+  return `<pattern id="st-${id}" patternUnits="userSpaceOnUse" width="1.6" height="1.6" patternTransform="rotate(35)">
+      <rect width="1.6" height="1.6" fill="${base}"/><rect width=".55" height="1.6" fill="${hi}"/></pattern>
+    <filter id="lift-${id}" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy=".7" stdDeviation=".45" flood-color="#000" flood-opacity=".45"/></filter>`;
+}
+
+function embroidered(id, thread, hi, edge, sparkleThread, sparkleHi) {
+  return `<defs>${stitch(id + 't', thread, hi)}${stitch(id + 's', sparkleThread, sparkleHi)}</defs>
+    <g filter="url(#lift-${id}t)">
+      ${t(256, 126, 'host', { f: SCRIPT, s: 32, fill: `url(#st-${id}t)`, tf: 'rotate(-6 256 120)' })}
+      ${t(256, 126, 'host', { f: SCRIPT, s: 32, fill: 'none', stroke: edge, sw: .5, tf: 'rotate(-6 256 120)' })}
+    </g>
+    <g filter="url(#lift-${id}s)">${sparkle(291, 99, 6.5, `url(#st-${id}s)`)}</g>`;
+}
+
+function tee(side, print, id, label, shirt = 'black') {
+  const sh = SHIRTS[shirt];
   const front = side === 'front';
   const body = bodyPath(front ? NECK_FRONT : NECK_BACK);
   const collar = front ? 'M158 24 C170 52 230 52 242 24' : 'M158 24 C172 36 228 36 242 24';
-  const inner = front ? `<path d="M158 24 C172 36 228 36 242 24 ${NECK_FRONT} Z" fill="#070707"/>` : '';
+  const inner = front ? `<path d="M158 24 C172 36 228 36 242 24 ${NECK_FRONT} Z" fill="${sh.inside}"/>` : '';
   return `<svg viewBox="0 0 400 440" role="img" aria-label="${label}, ${side}">
     <defs><linearGradient id="sh-${id}" x1="0" x2="1">
-      <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="0" stop-color="${sh.sheen}" stop-opacity="${sh.op[0]}"/><stop offset=".5" stop-color="${sh.sheen}" stop-opacity="${sh.op[1]}"/><stop offset="1" stop-color="${sh.sheen}" stop-opacity="${sh.op[0]}"/>
     </linearGradient></defs>
     ${inner}
-    <path d="${body}" fill="${TEE}"/>
+    <path d="${body}" fill="${sh.body}" stroke="${sh.outline}" stroke-width="1.2"/>
     <path d="${body}" fill="url(#sh-${id})"/>
-    <path d="${collar}" fill="none" stroke="#2a2a2a" stroke-width="8" stroke-linecap="round"/>
-    <g fill="none" stroke="#202020" stroke-width="1.4">
+    <path d="${collar}" fill="none" stroke="${sh.collar}" stroke-width="8" stroke-linecap="round"/>
+    <g fill="none" stroke="${sh.seam}" stroke-width="1.4">
       <path d="M72 44 Q86 88 86 132"/><path d="M328 44 Q314 88 314 132"/>
       <path d="M20 144 L83 158"/><path d="M380 144 L317 158"/><path d="M88 404 Q200 410 312 404"/>
     </g>
@@ -412,6 +435,21 @@ const concepts = [
       ${t(200, 284, 'encore: year two', { f: GROOVY, s: 18, fill: PINK })}
       ${t(200, 302, 'every show answered by Yelp Host', { f: SERIF, it: 1, s: 9, op: .75 })}
       ${sparkle(278, 88, 7, PINK)}${sparkle(124, 282, 5, PAPER)}`
+  },
+  {
+    ref: 'I1', name: 'Stitched Host, Black',
+    idea: 'A small embroidered script "host" on the left chest with one tiny sparkle. The back is blank except for a little stitched sparkle at the nape.',
+    trend: 'Minimal embroidery / quiet branding', inks: 'Embroidery, 2 thread colors (cream, red)', best: 'Soft, wearable every day, feels premium',
+    front: embroidered('i1', PAPER, '#ffffff', '#bdb6a8', RED, '#ff6166'),
+    back: `<defs>${stitch('i1n', RED, '#ff6166')}</defs><g filter="url(#lift-i1n)">${sparkle(200, 60, 4.5, 'url(#st-i1n)')}</g>`
+  },
+  {
+    ref: 'I2', name: 'Stitched Host, White',
+    shirt: 'white',
+    idea: 'The same embroidery on a white tee, in Yelp red thread. White makes it lighter and more summery, and red on white is the most on-brand pairing.',
+    trend: 'Minimal embroidery / quiet branding', inks: 'Embroidery, 1 thread color (red)', best: 'Cheapest embroidery (one thread), cleanest brand look',
+    front: embroidered('i2', RED, '#ff5a60', '#9e1419', RED, '#ff5a60'),
+    back: `<defs>${stitch('i2n', RED, '#ff5a60')}</defs><g filter="url(#lift-i2n)">${sparkle(200, 60, 4.5, 'url(#st-i2n)')}</g>`
   }
 ];
 
@@ -428,8 +466,8 @@ document.getElementById('board').innerHTML = concepts.map(c => `
       </dl>
     </div>
     <div class="tees">
-      <figure class="tee">${tee('front', c.front, c.ref + 'f', c.name)}<figcaption>Front</figcaption></figure>
-      <figure class="tee">${tee('back', c.back, c.ref + 'b', c.name)}<figcaption>Back</figcaption></figure>
+      <figure class="tee">${tee('front', c.front, c.ref + 'f', c.name, c.shirt)}<figcaption>Front</figcaption></figure>
+      <figure class="tee">${tee('back', c.back, c.ref + 'b', c.name, c.shirt)}<figcaption>Back</figcaption></figure>
     </div>
   </section>`).join('');
 </script>
