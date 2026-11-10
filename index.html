@@ -231,14 +231,15 @@ function embroidered(id, thread, hi, edge, sparkleThread, sparkleHi) {
 }
 
 // Front of House Club back print; ink is the main text color for the shirt it sits on.
-function fohBack(id, ink, year) {
+// minimal swaps the YELP HOST line for EST <year> and drops the tagline.
+function fohBack(id, ink, year, minimal = false) {
   return `
       <defs><path id="arc-${id}" d="M108 186 A96 96 0 0 1 292 186"/></defs>
       <text font-family="${VARSITY}" font-size="23" fill="${ink}" letter-spacing="2" text-anchor="middle"><textPath href="#arc-${id}" startOffset="50%">FRONT OF HOUSE</textPath></text>
       ${t(200, 222, 'Club', { f: SCRIPT, s: 88, fill: RED, tf: 'rotate(-6 200 200)' })}
       ${t(132, 266, '★', { s: 10, fill: RED })}${t(268, 266, '★', { s: 10, fill: RED })}
-      ${t(200, 268, 'YELP HOST', { f: VARSITY, s: 15, ls: 2, fill: ink })}
-      ${t(200, 292, `EST. ${year} · WE'VE GOT THE PHONES`, { s: 7.5, ls: 1.6, op: .75, w: 600, fill: ink })}`;
+      ${t(200, 268, minimal ? `EST ${year}` : 'YELP HOST', { f: VARSITY, s: 15, ls: 2, fill: ink })}
+      ${minimal ? '' : t(200, 292, `EST. ${year} · WE'VE GOT THE PHONES`, { s: 7.5, ls: 1.6, op: .75, w: 600, fill: ink })}`;
 }
 
 // Small stitched label at the nape, with the sparkle. Script by default; caps sets it in small varsity capitals.
@@ -475,7 +476,7 @@ const concepts = [
     idea: 'The white stitched tee with a statement on the back. The front stays quiet with the red embroidered "host" and sparkle; the back carries the Front of House Club print in black and red.',
     trend: 'Embroidered chest + back graphic', inks: 'Front: embroidery, 1 thread (red). Back: screen print, 2 inks (black, red)', best: 'Clean from the front, a conversation starter from behind',
     front: embroidered('i3', RED, '#ff5a60', '#9e1419', RED, '#ff5a60'),
-    back: fohBack('i3', TEE, '2025')
+    back: fohBack('i3', TEE, '2025', true)
   }
 ];
 
