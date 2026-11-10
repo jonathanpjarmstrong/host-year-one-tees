@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}</style>
+<title>Host Year One Tees</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Graduate&family=IBM+Plex+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;600;800&family=Yellowtail&display=swap">
+<style>
+  /* Layout: a merch sketch board. One row per direction: notes on the left, front + back boxy tees on a studio-grey stage. */
+  :root {
+    --bg: #e9eaec;
+    --stage: #dadce0;
+    --fg: #17181b;
+    --muted: #5a5e66;
+    --rule: #c6c9ce;
+    --accent: #c91f26;
+    --font-display: 'Schibsted Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    --font-body: 'Schibsted Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1b1c1f; --stage: #2a2c31; --fg: #eceef1; --muted: #9ba0a8; --rule: #383b41; --accent: #f04a4f;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1b1c1f; --stage: #2a2c31; --fg: #eceef1; --muted: #9ba0a8; --rule: #383b41; --accent: #f04a4f;
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding-block: 2.5rem 3rem;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  header { display: grid; gap: .5rem; padding-bottom: 1.75rem; }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.05;
+    letter-spacing: -.02em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .lede { max-width: 64ch; color: var(--muted); margin: 0; }
+  .lede strong { color: var(--fg); font-weight: 600; }
+
+  .concept {
+    display: grid;
+    grid-template-columns: minmax(0, 16rem) minmax(0, 1fr);
+    gap: 2rem;
+    padding-block: 2rem;
+    border-top: 1px solid var(--rule);
+  }
+  .notes { display: flex; flex-direction: column; gap: .6rem; min-width: 0; }
+  .ref {
+    font-family: var(--font-mono);
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    color: var(--muted);
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.45rem;
+    line-height: 1.15;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .idea { margin: 0; }
+  dl { margin: .25rem 0 0; display: grid; grid-template-columns: auto 1fr; gap: .35rem .9rem; font-size: .875rem; }
+  dt {
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: .15rem;
+  }
+  dd { margin: 0; }
+
+  .tees { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  figure.tee {
+    margin: 0;
+    background: var(--stage);
+    border-radius: 6px;
+    padding: 1rem .75rem .7rem;
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+  }
+  figure.tee svg { width: 100%; height: auto; display: block; max-width: 100%; }
+  figcaption {
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+  }
+  footer { border-top: 1px solid var(--rule); padding-top: 1.5rem; color: var(--muted); font-size: .875rem; max-width: 70ch; }
+
+  @media (max-width: 760px) {
+    .concept { grid-template-columns: 1fr; gap: 1rem; }
+    .tees { gap: .6rem; }
+    figure.tee { padding: .6rem .4rem .5rem; }
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Yelp Host · Anniversary merch</div>
+    <h1>Year One Tees</h1>
+    <p class="lede">Six on-trend directions on a <strong>black boxy, oversized tee</strong>. Each follows the current streetwear format: a small chest hit up front and the big statement on the back. Inks stay red and white (plus one tonal and one chrome option). Launch year is set to 2026.</p>
+  </header>
+  <main id="board"></main>
+  <footer>Sketches only: type and scale are approximate. Pick one or two and I'll tighten the type, drop in real milestones, and spec the prints for a vendor (puff, foil and crackle all need to be called out on the order).</footer>
+</div>
+
+<script>
+const INK = '#f3f1ec', RED = '#e3262d', TEE = '#121212', PAPER = '#efeae0';
+const ARCH = "'Archivo Black','Arial Black',Impact,sans-serif";
+const VARSITY = "'Graduate','Rockwell','Courier New',serif";
+const SCRIPT = "'Yellowtail','Brush Script MT',cursive";
+const MONO = "'IBM Plex Mono',ui-monospace,Menlo,monospace";
+
+function t(x, y, s, o = {}) {
+  return `<text x="${x}" y="${y}" font-family="${o.f || MONO}" font-size="${o.s || 10}" fill="${o.fill || INK}" text-anchor="${o.a || 'middle'}"`
+    + (o.ls ? ` letter-spacing="${o.ls}"` : '')
+    + (o.w ? ` font-weight="${o.w}"` : '')
+    + (o.op ? ` opacity="${o.op}"` : '')
+    + (o.tf ? ` transform="${o.tf}"` : '')
+    + (o.stroke ? ` stroke="${o.stroke}" stroke-width="${o.sw || 1}"` : '')
+    + (o.mask ? ` stroke="${o.mask}" stroke-width="7" stroke-linejoin="round" style="paint-order:stroke"` : '')
+    + `>${s}</text>`;
+}
+
+// Dotted-leader row: the label text masks the dots behind it.
+function row(y, l, r, o = {}) {
+  const x1 = o.x1 || 118, x2 = o.x2 || 282, fill = o.fill || INK, mask = o.mask || TEE, s = o.s || 9.5;
+  return `<line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="${fill}" stroke-width="1.3" stroke-dasharray="0.1 3.4" stroke-linecap="round" opacity=".55"/>`
+    + t(x1, y, l, { s, fill, a: 'start', mask, w: o.w })
+    + t(x2, y, r, { s, fill: o.rfill || fill, a: 'end', mask, w: o.w });
+}
+
+// Puff print: dark drop shadow, tonal fill, faint top highlight.
+function puff(x, y, s, size, f = ARCH, ls) {
+  return t(x, y + size * .03, s, { f, s: size, fill: '#050505', ls })
+    + t(x, y, s, { f, s: size, fill: '#2a2a2a', ls })
+    + t(x, y, s, { f, s: size, fill: 'none', stroke: '#3c3c3c', sw: .7, ls });
+}
+
+function sparkle(cx, cy, r, fill) {
+  return `<path d="M${cx} ${cy - r} Q${cx} ${cy} ${cx + r} ${cy} Q${cx} ${cy} ${cx} ${cy + r} Q${cx} ${cy} ${cx - r} ${cy} Q${cx} ${cy} ${cx} ${cy - r} Z" fill="${fill}"/>`;
+}
+
+function barcode(x1, x2, y, h, color) {
+  const pat = [1, 2, 1, 1, 3, 1, 2, 2, 1, 1, 1, 3, 2, 1, 1, 2, 1, 3, 1, 1, 2, 1];
+  let x = x1, i = 0, bar = true, out = '';
+  while (x < x2) {
+    const w = pat[i % pat.length] * 1.4;
+    if (bar) out += `<rect x="${x.toFixed(1)}" y="${y}" width="${Math.min(w, x2 - x).toFixed(1)}" height="${h}" fill="${color}"/>`;
+    x += w; i++; bar = !bar;
+  }
+  return out;
+}
+
+const chromeDef = id => `<linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#ffffff"/><stop offset=".42" stop-color="#aeb6c0"/><stop offset=".5" stop-color="#363b43"/>
+  <stop offset=".6" stop-color="#e3e8ee"/><stop offset="1" stop-color="#868e98"/></linearGradient>`;
+
+// Vintage crackle: noise knocks holes out of the ink.
+const crackleDef = id => `<filter id="${id}" x="0" y="0" width="100%" height="100%">
+  <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="4" result="n"/>
+  <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3.2 2.3" result="m"/>
+  <feComposite in="SourceGraphic" in2="m" operator="in"/></filter>`;
+
+// Boxy oversized silhouette: dropped shoulders, wide short sleeves, wide body.
+const NECK_FRONT = 'C230 52 170 52 158 24';
+const NECK_BACK = 'C228 36 172 36 158 24';
+const bodyPath = neck => `M158 24 L66 42 Q40 54 30 90 L16 156 L82 170 L86 132 L86 414 Q200 420 314 414 L314 132 L318 170 L384 156 L370 90 Q360 54 334 42 L242 24 ${neck} Z`;
+
+function tee(side, print, id, label) {
+  const front = side === 'front';
+  const body = bodyPath(front ? NECK_FRONT : NECK_BACK);
+  const collar = front ? 'M158 24 C170 52 230 52 242 24' : 'M158 24 C172 36 228 36 242 24';
+  const inner = front ? `<path d="M158 24 C172 36 228 36 242 24 ${NECK_FRONT} Z" fill="#070707"/>` : '';
+  return `<svg viewBox="0 0 400 440" role="img" aria-label="${label}, ${side}">
+    <defs><linearGradient id="sh-${id}" x1="0" x2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient></defs>
+    ${inner}
+    <path d="${body}" fill="${TEE}"/>
+    <path d="${body}" fill="url(#sh-${id})"/>
+    <path d="${collar}" fill="none" stroke="#2a2a2a" stroke-width="8" stroke-linecap="round"/>
+    <g fill="none" stroke="#202020" stroke-width="1.4">
+      <path d="M72 44 Q86 88 86 132"/><path d="M328 44 Q314 88 314 132"/>
+      <path d="M20 144 L83 158"/><path d="M380 144 L317 158"/><path d="M88 404 Q200 410 312 404"/>
+    </g>
+    <g>${print}</g>
+  </svg>`;
+}
+
+let receipt = 'M122 78 H278 V316';
+for (let i = 0; i < 13; i++) receipt += ' l-6 6 l-6 -6';
+receipt += ' Z';
+
+const concepts = [
+  {
+    ref: 'A1', name: 'Front of House Club',
+    idea: 'Club tees are everywhere right now (run club, pickleball club, book club). "Front of house" is what restaurant staff call the host stand and dining room, which is exactly the job Host does.',
+    trend: 'Social club / collegiate', inks: '2 (white, red)', best: 'Restaurant people get it instantly; reads as cool merch to everyone else',
+    front: `
+      ${t(262, 108, 'F.O.H.', { f: VARSITY, s: 18, ls: 1 })}
+      ${t(262, 126, 'Club', { f: SCRIPT, s: 17, fill: RED, tf: 'rotate(-5 262 126)' })}
+      ${t(262, 140, 'YELP HOST · 2026', { s: 5.5, ls: 1.2, w: 600 })}`,
+    back: `
+      <defs><path id="arc-a1" d="M108 186 A96 96 0 0 1 292 186"/></defs>
+      <text font-family="${VARSITY}" font-size="23" fill="${INK}" letter-spacing="2" text-anchor="middle"><textPath href="#arc-a1" startOffset="50%">FRONT OF HOUSE</textPath></text>
+      ${t(200, 222, 'Club', { f: SCRIPT, s: 88, fill: RED, tf: 'rotate(-6 200 200)' })}
+      ${t(132, 266, '★', { s: 10, fill: RED })}${t(268, 266, '★', { s: 10, fill: RED })}
+      ${t(200, 268, 'YELP HOST', { f: VARSITY, s: 15, ls: 2 })}
+      ${t(200, 292, "EST. 2026 · WE'VE GOT THE PHONES", { s: 7.5, ls: 1.6, op: .75, w: 600 })}`
+  },
+  {
+    ref: 'A2', name: 'Host Supper Club',
+    idea: 'Same club format with a dressier, after-dark feel. Supper clubs are having a moment, and the name works as both a club tee and restaurant merch.',
+    trend: 'Supper club / vintage matchbook', inks: '2 (white, red)', best: 'Feels the most like a real restaurant you\'d want merch from',
+    front: `
+      <rect x="236" y="92" width="52" height="50" rx="3" fill="none" stroke="${INK}" stroke-width="1.2"/>
+      <rect x="240" y="96" width="44" height="42" rx="2" fill="none" stroke="${RED}" stroke-width=".8"/>
+      ${t(262, 113, 'HOST', { f: VARSITY, s: 12, ls: 1 })}
+      ${t(262, 127, 'Supper Club', { f: SCRIPT, s: 10.5, fill: RED })}
+      ${t(262, 135, 'EST. 2026', { s: 4.5, ls: 1, w: 600 })}`,
+    back: `
+      <defs><path id="arc-a2" d="M112 182 A92 92 0 0 1 288 182"/></defs>
+      <text font-family="${VARSITY}" font-size="31" fill="${INK}" letter-spacing="2" text-anchor="middle"><textPath href="#arc-a2" startOffset="50%">YELP HOST</textPath></text>
+      ${t(200, 196, 'Supper Club', { f: SCRIPT, s: 44, fill: RED, tf: 'rotate(-6 200 190)' })}
+      <line x1="132" y1="226" x2="268" y2="226" stroke="${INK}" stroke-width=".8" opacity=".5"/>
+      ${t(200, 246, 'COCKTAILS · DINNER · RESERVATIONS', { s: 7.5, ls: 1.4, w: 600 })}
+      ${t(200, 262, 'OPEN EVERY NIGHT · EST. 2026', { s: 7.5, ls: 1.4, fill: RED, w: 600 })}
+      <line x1="132" y1="274" x2="268" y2="274" stroke="${INK}" stroke-width=".8" opacity=".5"/>
+      ${t(200, 298, '★ ★ ★', { s: 9, ls: 4, op: .8 })}`
+  },
+  {
+    ref: 'B', name: 'Tonal Puff',
+    idea: 'Black-on-black puff print, the quiet-luxury move. HOST in raised tonal ink on the chest with one red hit; a huge tonal 365 on the back.',
+    trend: 'Tonal / puff print', inks: '1 tonal puff + 1 red', best: 'Looks expensive, feels like a brand drop',
+    front: `
+      ${puff(200, 168, 'HOST', 60, ARCH, 2)}
+      <rect x="182" y="184" width="36" height="13" rx="6.5" fill="${RED}"/>
+      ${t(200, 193.5, 'YR 1', { s: 7.5, ls: 1, w: 600 })}`,
+    back: `
+      ${puff(200, 220, '365', 104, ARCH)}
+      ${puff(200, 254, 'DAYS ON THE LINE', 15, ARCH, 2)}
+      ${t(200, 284, 'YELP HOST · EST. 2026', { s: 7.5, ls: 2.5, fill: RED, w: 600 })}`
+  },
+  {
+    ref: 'C', name: 'Chrome Year One',
+    idea: 'Liquid chrome lettering and four-point sparkles, the Y2K revival look. Tiny chrome wordmark on the chest, oversized YEAR ONE on the back.',
+    trend: 'Y2K chrome / foil', inks: 'Silver foil or 4-color sim, + white', best: 'Strongest photo moment for a launch party',
+    front: `
+      <defs>${chromeDef('chr-cf')}</defs>
+      ${t(262, 116, 'host', { f: ARCH, s: 20, fill: 'url(#chr-cf)' })}
+      ${sparkle(290, 98, 6, INK)}${sparkle(234, 120, 3.5, INK)}
+      ${t(262, 132, 'YEAR ONE', { s: 6, ls: 1.6, w: 600, op: .8 })}`,
+    back: `
+      <defs>${chromeDef('chr-cb')}</defs>
+      ${t(200, 160, 'YEAR', { f: ARCH, s: 56, fill: 'url(#chr-cb)' })}
+      ${t(200, 242, 'ONE', { f: ARCH, s: 86, fill: 'url(#chr-cb)' })}
+      ${sparkle(282, 112, 13, INK)}${sparkle(116, 196, 8, INK)}${sparkle(292, 250, 6, RED)}${sparkle(130, 118, 4, INK)}
+      ${t(200, 276, 'YELP HOST · 2026 / 2027', { s: 8.5, ls: 2.5, w: 600 })}`
+  },
+  {
+    ref: 'D', name: "Today's Specials",
+    idea: 'Restaurant merch is a fashion category now. Diner badge on the chest, menu board on the back. "86\'d" is kitchen slang for off the menu: hold music and busy signals are gone.',
+    trend: 'Restaurant merch', inks: '2 (white, red)', best: 'Speaks the customer\'s language',
+    front: `
+      <defs>
+        <path id="arcTop-d" d="M145 170 A55 55 0 0 1 255 170"/>
+        <path id="arcBot-d" d="M139 170 A61 61 0 0 0 261 170"/>
+      </defs>
+      <g transform="translate(262 112) scale(.42) translate(-200 -170)">
+        <circle cx="200" cy="170" r="68" fill="none" stroke="${INK}" stroke-width="3.5"/>
+        <circle cx="200" cy="170" r="48" fill="none" stroke="${INK}" stroke-width="1.8"/>
+        <text font-family="${ARCH}" font-size="12" fill="${INK}" letter-spacing="3" text-anchor="middle"><textPath href="#arcTop-d" startOffset="50%">YELP HOST</textPath></text>
+        <text font-family="${MONO}" font-weight="600" font-size="9" fill="${INK}" letter-spacing="1.5" text-anchor="middle"><textPath href="#arcBot-d" startOffset="50%">ONE YEAR ON THE LINE</textPath></text>
+        ${t(142, 173, '★', { s: 10, fill: RED })}${t(258, 173, '★', { s: 10, fill: RED })}
+        ${t(200, 192, '1', { f: ARCH, s: 62, fill: RED })}
+      </g>`,
+    back: `
+      ${t(200, 108, "TODAY'S SPECIALS", { f: ARCH, s: 14.5 })}
+      <line x1="125" y1="119" x2="275" y2="119" stroke="${RED}" stroke-width="2"/>
+      ${row(144, 'Reservations', 'always', { s: 10 })}
+      ${row(164, 'Waitlist', 'always', { s: 10 })}
+      ${row(184, 'Hours &amp; parking', 'always', { s: 10 })}
+      ${row(204, 'Party of 12', 'always', { s: 10 })}
+      ${row(224, 'Hold music', "86'd", { s: 10, rfill: RED })}
+      ${row(244, 'Busy signal', "86'd", { s: 10, rfill: RED })}
+      ${t(200, 290, 'served by Yelp Host', { f: SCRIPT, s: 22, fill: RED })}
+      ${t(200, 310, 'SINCE 2026', { s: 8, ls: 2, op: .75, w: 600 })}`
+  },
+  {
+    ref: 'E', name: 'Order Up',
+    idea: 'Receipt graphics are a staple drop format. A kitchen ticket for the whole year: tiny ticket on the chest, full receipt on the back, stamped in red.',
+    trend: 'Receipt / ticket graphic', inks: '2 (paper, red; text knocks out to the shirt)', best: 'Room for real milestones (fill the brackets)',
+    front: `
+      <path d="M246 92 H278 V128 l-4 4 l-4 -4 l-4 4 l-4 -4 l-4 4 l-4 -4 l-4 4 l-4 -4 Z" fill="${PAPER}"/>
+      ${t(262, 103, '#001', { s: 7, fill: TEE, w: 600 })}
+      <line x1="250" y1="108" x2="274" y2="108" stroke="${TEE}" stroke-width="1" stroke-dasharray="2 1.5"/>
+      ${t(262, 122, 'YR 1', { f: ARCH, s: 10, fill: TEE })}
+      ${t(262, 150, 'ORDER UP', { f: ARCH, s: 9, ls: 1.5 })}`,
+    back: `
+      <path d="${receipt}" fill="${PAPER}"/>
+      ${t(200, 104, 'YELP HOST', { f: ARCH, s: 15, fill: TEE })}
+      ${t(200, 118, 'TABLE 1 · SERVER: HOST', { s: 7.5, fill: TEE, ls: .5 })}
+      <line x1="134" y1="127" x2="266" y2="127" stroke="${TEE}" stroke-width="1" stroke-dasharray="3 2"/>
+      ${['1 LAUNCH', '1 FIRST PILOT', '1 FIRST MULTI-LOC', '1 [MILESTONE]', '1 [MILESTONE]', '1 HOLIDAY RUSH'].map((l, i) => row(145 + i * 16, l, 'DONE', { x1: 134, x2: 266, s: 8.5, fill: TEE, mask: PAPER })).join('')}
+      <line x1="134" y1="236" x2="266" y2="236" stroke="${TEE}" stroke-width="1" stroke-dasharray="3 2"/>
+      ${t(134, 254, 'TOTAL', { f: ARCH, s: 11, fill: TEE, a: 'start' })}
+      ${t(266, 254, '1 YEAR', { f: ARCH, s: 11, fill: TEE, a: 'end' })}
+      ${barcode(140, 260, 266, 20, TEE)}
+      ${t(200, 300, 'THANK YOU · CALL AGAIN', { s: 7, fill: TEE, ls: 1 })}
+      <g transform="rotate(-14 266 334)">
+        <circle cx="266" cy="334" r="23" fill="none" stroke="${RED}" stroke-width="2"/>
+        <circle cx="266" cy="334" r="19" fill="none" stroke="${RED}" stroke-width=".8"/>
+        ${t(266, 332, 'YEAR', { f: ARCH, s: 8, fill: RED, ls: 1 })}
+        ${t(266, 342, 'ONE', { f: ARCH, s: 8, fill: RED, ls: 1 })}
+      </g>`
+  },
+  {
+    ref: 'F', name: 'Year One Tour',
+    idea: 'Vintage band tee with a cracked, worn-in print. The "tour dates" are the busiest nights on the restaurant calendar, with Year Two as the encore.',
+    trend: 'Vintage tour tee / crackle ink', inks: '2 (white, red) with distressed screen', best: 'Biggest crowd-pleaser',
+    front: `
+      <defs>${crackleDef('crk-f')}</defs>
+      <g filter="url(#crk-f)">
+        ${t(203, 150, 'YELP', { f: ARCH, s: 52, fill: RED })}
+        ${t(200, 147, 'YELP', { f: ARCH, s: 52 })}
+        ${t(203, 202, 'HOST', { f: ARCH, s: 52, fill: RED })}
+        ${t(200, 199, 'HOST', { f: ARCH, s: 52 })}
+        ${t(112, 228, '★', { s: 9, fill: RED })}${t(288, 228, '★', { s: 9, fill: RED })}
+        ${t(200, 228, 'THE YEAR ONE TOUR', { s: 9.5, ls: 3, w: 600 })}
+      </g>`,
+    back: `
+      <defs>${crackleDef('crk-b')}</defs>
+      <g filter="url(#crk-b)">
+        ${t(200, 100, 'YEAR ONE TOUR', { f: ARCH, s: 17 })}
+        <line x1="130" y1="111" x2="270" y2="111" stroke="${RED}" stroke-width="2"/>
+        ${[['NOV 25', 'THANKSGIVING EVE'], ['DEC 31', "NEW YEAR'S EVE"], ['FEB 07', 'BIG GAME SUNDAY'], ['FEB 14', "VALENTINE'S DAY"], ['MAY 09', "MOTHER'S DAY"], ['JUL 04', 'FOURTH OF JULY'], ['NIGHTLY', 'THE DINNER RUSH']]
+          .map(([d, e], i) => t(116, 134 + i * 17, d, { s: 9, fill: RED, a: 'start', w: 600 }) + t(168, 134 + i * 17, e, { s: 9, a: 'start' })).join('')}
+        ${t(200, 272, 'ENCORE: YEAR TWO', { f: ARCH, s: 14, fill: RED })}
+        ${t(200, 290, 'EVERY SHOW ANSWERED BY YELP HOST', { s: 6.5, ls: 1, op: .7 })}
+      </g>`
+  },
+  {
+    ref: 'G', name: 'Host Basic',
+    idea: 'No theme, just the brand. A small lowercase wordmark on the chest and an oversized one on the back, styled like a clean brand-basics drop. It works for new hires, customers and events long after the anniversary.',
+    trend: 'Minimal brand basics / oversized back wordmark', inks: '2 (white, red)', best: 'Simplest to approve and print, wearable any day',
+    front: `
+      ${t(262, 118, `host<tspan fill="${RED}">.</tspan>`, { f: ARCH, s: 19 })}
+      ${t(262, 131, 'BY YELP', { s: 5.5, ls: 2, w: 600, op: .75 })}`,
+    back: `
+      ${t(200, 74, 'YELP HOST', { s: 7, ls: 3, w: 600, op: .8 })}
+      ${t(200, 214, `host<tspan fill="${RED}">.</tspan>`, { f: ARCH, s: 78, ls: -2 })}
+      <line x1="140" y1="238" x2="260" y2="238" stroke="${INK}" stroke-width=".8" opacity=".4"/>
+      ${t(200, 256, 'ALWAYS PICKING UP', { s: 8, ls: 3, w: 600 })}
+      ${t(200, 272, 'EST. 2026', { s: 7, ls: 2, fill: RED, w: 600 })}`
+  }
+];
+
+document.getElementById('board').innerHTML = concepts.map(c => `
+  <section class="concept" id="concept-${c.ref.toLowerCase()}">
+    <div class="notes">
+      <div class="ref">DIRECTION ${c.ref}</div>
+      <h2>${c.name}</h2>
+      <p class="idea">${c.idea}</p>
+      <dl>
+        <dt>Trend</dt><dd>${c.trend}</dd>
+        <dt>Inks</dt><dd>${c.inks}</dd>
+        <dt>Why</dt><dd>${c.best}</dd>
+      </dl>
+    </div>
+    <div class="tees">
+      <figure class="tee">${tee('front', c.front, c.ref + 'f', c.name)}<figcaption>Front</figcaption></figure>
+      <figure class="tee">${tee('back', c.back, c.ref + 'b', c.name)}<figcaption>Back</figcaption></figure>
+    </div>
+  </section>`).join('');
+</script>
+
+</html>
