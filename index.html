@@ -8,7 +8,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Graduate&family=IBM+Plex+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;600;800&family=Yellowtail&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,600&family=Shrikhand&family=Graduate&family=IBM+Plex+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;600;800&family=Yellowtail&display=swap">
 <style>
   /* Layout: a merch sketch board. One row per direction: notes on the left, front + back boxy tees on a studio-grey stage. */
   :root {
@@ -135,7 +135,7 @@
   <header>
     <div class="eyebrow">Yelp Host · Anniversary merch</div>
     <h1>Year One Tees</h1>
-    <p class="lede">Six on-trend directions on a <strong>black boxy, oversized tee</strong>. Each follows the current streetwear format: a small chest hit up front and the big statement on the back. Inks stay red and white (plus one tonal and one chrome option). Launch year is set to 2026.</p>
+    <p class="lede">On-trend directions on a <strong>black boxy, oversized tee</strong>. Each follows the current streetwear format: a small chest hit up front and the big statement on the back. Inks stay red and white (plus one tonal and one chrome option). Launch year is set to 2026.</p>
   </header>
   <main id="board"></main>
   <footer>Sketches only: type and scale are approximate. Pick one or two and I'll tighten the type, drop in real milestones, and spec the prints for a vendor (puff, foil and crackle all need to be called out on the order).</footer>
@@ -147,11 +147,15 @@ const ARCH = "'Archivo Black','Arial Black',Impact,sans-serif";
 const VARSITY = "'Graduate','Rockwell','Courier New',serif";
 const SCRIPT = "'Yellowtail','Brush Script MT',cursive";
 const MONO = "'IBM Plex Mono',ui-monospace,Menlo,monospace";
+const GROOVY = "'Shrikhand','Cooper Black',Georgia,serif";
+const SERIF = "'Fraunces',Georgia,serif";
+const PINK = '#f2a7b6';
 
 function t(x, y, s, o = {}) {
   return `<text x="${x}" y="${y}" font-family="${o.f || MONO}" font-size="${o.s || 10}" fill="${o.fill || INK}" text-anchor="${o.a || 'middle'}"`
     + (o.ls ? ` letter-spacing="${o.ls}"` : '')
     + (o.w ? ` font-weight="${o.w}"` : '')
+    + (o.it ? ' font-style="italic"' : '')
     + (o.op ? ` opacity="${o.op}"` : '')
     + (o.tf ? ` transform="${o.tf}"` : '')
     + (o.stroke ? ` stroke="${o.stroke}" stroke-width="${o.sw || 1}"` : '')
@@ -390,6 +394,24 @@ const concepts = [
       <line x1="140" y1="238" x2="260" y2="238" stroke="${INK}" stroke-width=".8" opacity=".4"/>
       ${t(200, 256, 'ALWAYS PICKING UP', { s: 8, ls: 3, w: 600 })}
       ${t(200, 272, 'EST. 2026', { s: 7, ls: 2, fill: RED, w: 600 })}`
+  },
+  {
+    ref: 'H', name: 'Year One Tour, Soft',
+    idea: 'The tour idea with the volume turned down. A 70s rainbow arch, a rounded retro display face and italic serif tour dates in pink and red replace the heavy block type and cracked print.',
+    trend: '70s retro / soft tour tee', inks: '3 (red, pink, cream)', best: 'Warm and gender-neutral, still fun at a party',
+    front: `
+      ${[[64, RED], [54, PINK], [44, PAPER]].map(([r, c]) => `<path d="M${200 - r} 196 A${r} ${r} 0 0 1 ${200 + r} 196" fill="none" stroke="${c}" stroke-width="8" stroke-linecap="round"/>`).join('')}
+      ${sparkle(200, 178, 11, PAPER)}${sparkle(276, 138, 5, PINK)}${sparkle(124, 150, 4, PAPER)}
+      ${t(200, 236, 'Year One', { f: GROOVY, s: 36 })}
+      ${t(200, 258, 'the tour · 2026–27', { f: SERIF, it: 1, s: 13, fill: PINK })}`,
+    back: `
+      ${t(200, 100, 'Year One Tour', { f: SERIF, it: 1, s: 26, w: 600 })}
+      <path d="M140 114 q10 -6 20 0 t20 0 t20 0 t20 0 t20 0 t20 0" fill="none" stroke="${PINK}" stroke-width="2" stroke-linecap="round"/>
+      ${[['NOV 25', 'Thanksgiving Eve'], ['DEC 31', "New Year's Eve"], ['FEB 07', 'Big Game Sunday'], ['FEB 14', "Valentine's Day"], ['MAY 09', "Mother's Day"], ['JUL 04', 'Fourth of July'], ['NIGHTLY', 'The dinner rush']]
+        .map(([d, e], i) => t(120, 138 + i * 18, d, { s: 8.5, fill: RED, a: 'start', w: 600 }) + t(168, 138 + i * 18, e, { f: SERIF, it: 1, s: 11.5, a: 'start' })).join('')}
+      ${t(200, 284, 'encore: year two', { f: GROOVY, s: 18, fill: PINK })}
+      ${t(200, 302, 'every show answered by Yelp Host', { f: SERIF, it: 1, s: 9, op: .75 })}
+      ${sparkle(278, 88, 7, PINK)}${sparkle(124, 282, 5, PAPER)}`
   }
 ];
 
