@@ -230,6 +230,17 @@ function embroidered(id, thread, hi, edge, sparkleThread, sparkleHi) {
     <g filter="url(#lift-${id}s)">${sparkle(291, 99, 6.5, `url(#st-${id}s)`)}</g>`;
 }
 
+// Front of House Club back print; ink is the main text color for the shirt it sits on.
+function fohBack(id, ink, year) {
+  return `
+      <defs><path id="arc-${id}" d="M108 186 A96 96 0 0 1 292 186"/></defs>
+      <text font-family="${VARSITY}" font-size="23" fill="${ink}" letter-spacing="2" text-anchor="middle"><textPath href="#arc-${id}" startOffset="50%">FRONT OF HOUSE</textPath></text>
+      ${t(200, 222, 'Club', { f: SCRIPT, s: 88, fill: RED, tf: 'rotate(-6 200 200)' })}
+      ${t(132, 266, '★', { s: 10, fill: RED })}${t(268, 266, '★', { s: 10, fill: RED })}
+      ${t(200, 268, 'YELP HOST', { f: VARSITY, s: 15, ls: 2, fill: ink })}
+      ${t(200, 292, `EST. ${year} · WE'VE GOT THE PHONES`, { s: 7.5, ls: 1.6, op: .75, w: 600, fill: ink })}`;
+}
+
 // Small stitched label at the nape, with the sparkle. Script by default; caps sets it in small varsity capitals.
 function embroideredNape(id, thread, hi, edge, sparkleThread, sparkleHi, label = 'year 1', caps = false) {
   const o = caps
@@ -278,13 +289,7 @@ const concepts = [
       ${t(262, 108, 'F.O.H.', { f: VARSITY, s: 18, ls: 1 })}
       ${t(262, 126, 'Club', { f: SCRIPT, s: 17, fill: RED, tf: 'rotate(-5 262 126)' })}
       ${t(262, 140, 'YELP HOST · 2026', { s: 5.5, ls: 1.2, w: 600 })}`,
-    back: `
-      <defs><path id="arc-a1" d="M108 186 A96 96 0 0 1 292 186"/></defs>
-      <text font-family="${VARSITY}" font-size="23" fill="${INK}" letter-spacing="2" text-anchor="middle"><textPath href="#arc-a1" startOffset="50%">FRONT OF HOUSE</textPath></text>
-      ${t(200, 222, 'Club', { f: SCRIPT, s: 88, fill: RED, tf: 'rotate(-6 200 200)' })}
-      ${t(132, 266, '★', { s: 10, fill: RED })}${t(268, 266, '★', { s: 10, fill: RED })}
-      ${t(200, 268, 'YELP HOST', { f: VARSITY, s: 15, ls: 2 })}
-      ${t(200, 292, "EST. 2026 · WE'VE GOT THE PHONES", { s: 7.5, ls: 1.6, op: .75, w: 600 })}`
+    back: fohBack('a1', INK, '2026')
   },
   {
     ref: 'A2', name: 'Host Supper Club',
@@ -463,6 +468,14 @@ const concepts = [
     trend: 'Minimal embroidery / quiet branding', inks: 'Embroidery, 1 thread color (red)', best: 'Cheapest embroidery (one thread), cleanest brand look',
     front: embroidered('i2', RED, '#ff5a60', '#9e1419', RED, '#ff5a60'),
     back: embroideredNape('i2n', RED, '#ff5a60', '#9e1419', RED, '#ff5a60', 'EST 2025', true)
+  },
+  {
+    ref: 'I3', name: 'Stitched Host + F.O.H. Club, White',
+    shirt: 'white',
+    idea: 'The white stitched tee with a statement on the back. The front stays quiet with the red embroidered "host" and sparkle; the back carries the Front of House Club print in black and red.',
+    trend: 'Embroidered chest + back graphic', inks: 'Front: embroidery, 1 thread (red). Back: screen print, 2 inks (black, red)', best: 'Clean from the front, a conversation starter from behind',
+    front: embroidered('i3', RED, '#ff5a60', '#9e1419', RED, '#ff5a60'),
+    back: fohBack('i3', TEE, '2025')
   }
 ];
 
