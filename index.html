@@ -230,6 +230,16 @@ function embroidered(id, thread, hi, edge, sparkleThread, sparkleHi) {
     <g filter="url(#lift-${id}s)">${sparkle(291, 99, 6.5, `url(#st-${id}s)`)}</g>`;
 }
 
+// Small stitched "year 1" at the nape, with the sparkle.
+function embroideredNape(id, thread, hi, edge, sparkleThread, sparkleHi) {
+  return `<defs>${stitch(id + 't', thread, hi)}${stitch(id + 's', sparkleThread, sparkleHi)}</defs>
+    <g filter="url(#lift-${id}t)">
+      ${t(198, 72, 'year 1', { f: SCRIPT, s: 17, fill: `url(#st-${id}t)`, tf: 'rotate(-6 198 68)' })}
+      ${t(198, 72, 'year 1', { f: SCRIPT, s: 17, fill: 'none', stroke: edge, sw: .4, tf: 'rotate(-6 198 68)' })}
+    </g>
+    <g filter="url(#lift-${id}s)">${sparkle(226, 56, 4, `url(#st-${id}s)`)}</g>`;
+}
+
 function tee(side, print, id, label, shirt = 'black') {
   const sh = SHIRTS[shirt];
   const front = side === 'front';
@@ -438,10 +448,10 @@ const concepts = [
   },
   {
     ref: 'I1', name: 'Stitched Host, Black',
-    idea: 'A small embroidered script "host" on the left chest with one tiny sparkle. The back is blank except for a little stitched sparkle at the nape.',
+    idea: 'A small embroidered script "host" on the left chest with one tiny sparkle. The back has a small stitched "year 1" and sparkle at the nape.',
     trend: 'Minimal embroidery / quiet branding', inks: 'Embroidery, 2 thread colors (cream, red)', best: 'Soft, wearable every day, feels premium',
     front: embroidered('i1', PAPER, '#ffffff', '#bdb6a8', RED, '#ff6166'),
-    back: `<defs>${stitch('i1n', RED, '#ff6166')}</defs><g filter="url(#lift-i1n)">${sparkle(200, 60, 4.5, 'url(#st-i1n)')}</g>`
+    back: embroideredNape('i1n', PAPER, '#ffffff', '#bdb6a8', RED, '#ff6166')
   },
   {
     ref: 'I2', name: 'Stitched Host, White',
@@ -449,7 +459,7 @@ const concepts = [
     idea: 'The same embroidery on a white tee, in Yelp red thread. White makes it lighter and more summery, and red on white is the most on-brand pairing.',
     trend: 'Minimal embroidery / quiet branding', inks: 'Embroidery, 1 thread color (red)', best: 'Cheapest embroidery (one thread), cleanest brand look',
     front: embroidered('i2', RED, '#ff5a60', '#9e1419', RED, '#ff5a60'),
-    back: `<defs>${stitch('i2n', RED, '#ff5a60')}</defs><g filter="url(#lift-i2n)">${sparkle(200, 60, 4.5, 'url(#st-i2n)')}</g>`
+    back: embroideredNape('i2n', RED, '#ff5a60', '#9e1419', RED, '#ff5a60')
   }
 ];
 
