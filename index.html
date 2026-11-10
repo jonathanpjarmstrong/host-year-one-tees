@@ -230,14 +230,17 @@ function embroidered(id, thread, hi, edge, sparkleThread, sparkleHi) {
     <g filter="url(#lift-${id}s)">${sparkle(291, 99, 6.5, `url(#st-${id}s)`)}</g>`;
 }
 
-// Small stitched "year 1" at the nape, with the sparkle.
-function embroideredNape(id, thread, hi, edge, sparkleThread, sparkleHi) {
+// Small stitched label at the nape, with the sparkle. Script by default; caps sets it in small varsity capitals.
+function embroideredNape(id, thread, hi, edge, sparkleThread, sparkleHi, label = 'year 1', caps = false) {
+  const o = caps
+    ? { f: VARSITY, s: 10, ls: 2, x: 196, y: 70, sx: 236, sy: 62 }
+    : { f: SCRIPT, s: 17, tf: 'rotate(-6 198 68)', x: 198, y: 72, sx: 226, sy: 56 };
   return `<defs>${stitch(id + 't', thread, hi)}${stitch(id + 's', sparkleThread, sparkleHi)}</defs>
     <g filter="url(#lift-${id}t)">
-      ${t(198, 72, 'year 1', { f: SCRIPT, s: 17, fill: `url(#st-${id}t)`, tf: 'rotate(-6 198 68)' })}
-      ${t(198, 72, 'year 1', { f: SCRIPT, s: 17, fill: 'none', stroke: edge, sw: .4, tf: 'rotate(-6 198 68)' })}
+      ${t(o.x, o.y, label, { f: o.f, s: o.s, ls: o.ls, fill: `url(#st-${id}t)`, tf: o.tf })}
+      ${t(o.x, o.y, label, { f: o.f, s: o.s, ls: o.ls, fill: 'none', stroke: edge, sw: .4, tf: o.tf })}
     </g>
-    <g filter="url(#lift-${id}s)">${sparkle(226, 56, 4, `url(#st-${id}s)`)}</g>`;
+    <g filter="url(#lift-${id}s)">${sparkle(o.sx, o.sy, 4, `url(#st-${id}s)`)}</g>`;
 }
 
 function tee(side, print, id, label, shirt = 'black') {
@@ -456,10 +459,10 @@ const concepts = [
   {
     ref: 'I2', name: 'Stitched Host, White',
     shirt: 'white',
-    idea: 'The same embroidery on a white tee, in Yelp red thread. White makes it lighter and more summery, and red on white is the most on-brand pairing.',
+    idea: 'The same embroidery on a white tee, in Yelp red thread, with a small stitched "EST 2025" at the nape. White makes it lighter and more summery, and red on white is the most on-brand pairing.',
     trend: 'Minimal embroidery / quiet branding', inks: 'Embroidery, 1 thread color (red)', best: 'Cheapest embroidery (one thread), cleanest brand look',
     front: embroidered('i2', RED, '#ff5a60', '#9e1419', RED, '#ff5a60'),
-    back: embroideredNape('i2n', RED, '#ff5a60', '#9e1419', RED, '#ff5a60')
+    back: embroideredNape('i2n', RED, '#ff5a60', '#9e1419', RED, '#ff5a60', 'EST 2025', true)
   }
 ];
 
